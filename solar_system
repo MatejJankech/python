@@ -1,2 +1,244 @@
-C:\Users\matej.jankech023\xd.py\solar_system\index.html
-C:\Users\matej.jankech023\xd.py\solar_system\styles.css
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompletní Sluneční soustava</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0b16;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sun {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffd700, #ff8c00, #ff4500);
+            box-shadow: 0 0 60px #ff8c00;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; 
+        }
+
+        .planet {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        @keyframes orbit-anim {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        @keyframes counter-rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .mercury-orbit {
+            width: 140px;
+            height: 140px;
+            animation: orbit-anim 5s linear infinite;
+        }
+        .mercury {
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle at 30% 30%, #a9a9a9, #484848);
+            animation: counter-rotate 5s linear infinite;
+        }
+
+        .venus-orbit {
+            width: 200px;
+            height: 200px;
+            animation: orbit-anim 8s linear infinite;
+        }
+        .venus {
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle at 30% 30%, #e6e6fa, #c2b280);
+            animation: counter-rotate 8s linear infinite;
+        }
+
+        .earth-orbit {
+            width: 280px;
+            height: 280px;
+            animation: orbit-anim 12s linear infinite;
+        }
+        .earth {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe, #001f4d);
+            position: absolute;
+            animation: counter-rotate 12s linear infinite;
+        }
+        .moon-orbit {
+            width: 45px;
+            height: 45px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            animation: orbit-anim 2s linear infinite;
+        }
+        .moon {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .mars-orbit {
+            width: 360px;
+            height: 360px;
+            animation: orbit-anim 15s linear infinite;
+        }
+        .mars {
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle at 30% 30%, #ff6347, #8b0000);
+            animation: counter-rotate 15s linear infinite;
+        }
+
+        .jupiter-orbit {
+            width: 500px;
+            height: 500px;
+            animation: orbit-anim 25s linear infinite;
+        }
+        .jupiter {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #d2b48c, #8b4513);
+            background: repeating-linear-gradient(
+                -45deg, 
+                #d2b48c, 
+                #d2b48c 5px, 
+                #a0522d 5px, 
+                #a0522d 10px
+            );
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5);
+            animation: counter-rotate 25s linear infinite;
+        }
+
+        .saturn-orbit {
+            width: 650px;
+            height: 650px;
+            animation: orbit-anim 35s linear infinite;
+        }
+        .saturn {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #f4e4b5, #cdb1ad);
+            position: relative;
+            animation: counter-rotate 35s linear infinite;
+        }
+
+        .saturn::after {
+            content: '';
+            position: absolute;
+            width: 160%;
+            height: 40%;
+            background: rgba(200, 180, 150, 0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(20deg);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(100, 80, 50, 0.2);
+        }
+
+        .uranus-orbit {
+            width: 800px;
+            height: 800px;
+            animation: orbit-anim 50s linear infinite;
+        }
+        .uranus {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #e0ffff, #00ced1);
+            animation: counter-rotate 50s linear infinite;
+        }
+
+        .neptune-orbit {
+            width: 950px;
+            height: 950px;
+            animation: orbit-anim 65s linear infinite;
+        }
+        .neptune {
+            width: 38px;
+            height: 38px;
+            background: radial-gradient(circle at 30% 30%, #4169e1, #000080);
+            animation: counter-rotate 65s linear infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sun"></div>
+
+    <div class="orbit mercury-orbit">
+        <div class="planet mercury"></div>
+    </div>
+
+    <div class="orbit venus-orbit">
+        <div class="planet venus"></div>
+    </div>
+
+    <div class="orbit earth-orbit">
+        <div class="planet earth">
+            <div class="orbit moon-orbit">
+                <div class="moon"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="orbit mars-orbit">
+        <div class="planet mars"></div>
+    </div>
+
+    <div class="orbit jupiter-orbit">
+        <div class="planet jupiter"></div>
+    </div>
+
+    <div class="orbit saturn-orbit">
+        <div class="planet saturn"></div>
+    </div>
+
+    <div class="orbit uranus-orbit">
+        <div class="planet uranus"></div>
+    </div>
+
+    <div class="orbit neptune-orbit">
+        <div class="planet neptune"></div>
+    </div>
+
+</body>
+</html>
